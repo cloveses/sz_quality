@@ -31,10 +31,11 @@ def check_file(filename):
         if not all(lvl in ('A','B','C') for lvl in levels):
             info += '第{}行数据，{},{}包含不正确的等级{}.'.format(index+1,signid,name,','.join(levels))
         c = collections.Counter(levels)
-        if c['A'] < 1 or c['C'] >2:
+        if c['A'] == 0 or c['C'] > 2:
             info += '第{}行数据，{},{}等级不符合示范高中录取{}.'.format(index+1,signid,name,','.join(levels))
         if info:
             infos.append(info)
+    return infos
 
 def get_files(directory):
     files = []
